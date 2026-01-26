@@ -55,6 +55,8 @@ import {
 } from "@/components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Navigation } from "@/components/navigation"
+import { CodeWindow } from "@/components/code-window"
+import { Code } from "lucide-react"
 
 // Country full names for display
 const COUNTRY_NAMES: Record<string, string> = {
@@ -80,12 +82,12 @@ type SportData = {
 type ChartType = "bar" | "line" | "pie" | "radar" | "scatter"
 
 const CHART_COLORS = [
-  "hsl(var(--chart-1))",
-  "hsl(var(--chart-2))",
-  "hsl(var(--chart-3))",
-  "hsl(var(--chart-4))",
-  "hsl(var(--chart-5))",
-  "hsl(var(--primary))",
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
+  "var(--chart-5)",
+  "var(--primary)",
 ]
 
 const COUNTRY_COLORS: Record<string, string> = {
@@ -371,9 +373,9 @@ export default function SportsAnalyticsPage() {
     }
 
     const tooltipStyle = {
-      backgroundColor: "hsl(var(--card))",
-      border: "1px solid hsl(var(--border))",
-      color: "hsl(var(--foreground))",
+      backgroundColor: "var(--card)",
+      border: "1px solid var(--border)",
+      color: "var(--foreground)",
       borderRadius: "8px",
     }
 
@@ -382,19 +384,19 @@ export default function SportsAnalyticsPage() {
         return (
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={barChartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis
                 dataKey="sport"
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
+                stroke="var(--muted-foreground)"
+                tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
                 angle={-45}
                 textAnchor="end"
                 height={80}
               />
               <YAxis
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: "hsl(var(--muted-foreground))" }}
-                label={{ value: "Ranking (Lower is Better)", angle: -90, position: "insideLeft", fill: "hsl(var(--muted-foreground))" }}
+                stroke="var(--muted-foreground)"
+                tick={{ fill: "var(--muted-foreground)" }}
+                label={{ value: "Ranking (Lower is Better)", angle: -90, position: "insideLeft", fill: "var(--muted-foreground)" }}
               />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend />
@@ -409,7 +411,7 @@ export default function SportsAnalyticsPage() {
                   />
                 ))
               ) : (
-                <Bar dataKey="value" name={COUNTRY_NAMES[selectedCountry]} fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="value" name={COUNTRY_NAMES[selectedCountry]} fill="var(--primary)" radius={[4, 4, 0, 0]} />
               )}
             </BarChart>
           </ResponsiveContainer>
@@ -419,16 +421,16 @@ export default function SportsAnalyticsPage() {
         return (
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={barChartData} margin={{ top: 20, right: 30, left: 20, bottom: 60 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis
                 dataKey="sport"
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
+                stroke="var(--muted-foreground)"
+                tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
                 angle={-45}
                 textAnchor="end"
                 height={80}
               />
-              <YAxis stroke="hsl(var(--muted-foreground))" tick={{ fill: "hsl(var(--muted-foreground))" }} />
+              <YAxis stroke="var(--muted-foreground)" tick={{ fill: "var(--muted-foreground)" }} />
               <Tooltip contentStyle={tooltipStyle} />
               <Legend />
               {selectedCountry === "all" ? (
@@ -448,9 +450,9 @@ export default function SportsAnalyticsPage() {
                   type="monotone"
                   dataKey="value"
                   name={COUNTRY_NAMES[selectedCountry]}
-                  stroke="hsl(var(--primary))"
+                  stroke="var(--primary)"
                   strokeWidth={2}
-                  dot={{ fill: "hsl(var(--primary))", strokeWidth: 2 }}
+                  dot={{ fill: "var(--primary)", strokeWidth: 2 }}
                 />
               )}
             </LineChart>
@@ -481,7 +483,7 @@ export default function SportsAnalyticsPage() {
                   labelLine={true}
                   label={({ name, value }) => `${name}: ${value}`}
                   outerRadius={150}
-                  fill="hsl(var(--primary))"
+                  fill="var(--primary)"
                   dataKey="value"
                 >
                   {pieChartData.map((entry, index) => (
@@ -499,15 +501,15 @@ export default function SportsAnalyticsPage() {
         return (
           <ResponsiveContainer width="100%" height={450}>
             <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarChartData}>
-              <PolarGrid stroke="hsl(var(--border))" />
+              <PolarGrid stroke="var(--border)" />
               <PolarAngleAxis
                 dataKey="sport"
-                tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }}
+                tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
               />
               <PolarRadiusAxis
                 angle={30}
                 domain={[0, 8]}
-                tick={{ fill: "hsl(var(--muted-foreground))" }}
+                tick={{ fill: "var(--muted-foreground)" }}
               />
               {countries.map((country, index) => (
                 <Radar
@@ -529,20 +531,20 @@ export default function SportsAnalyticsPage() {
         return (
           <ResponsiveContainer width="100%" height={400}>
             <ScatterChart margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
               <XAxis
                 type="number"
                 dataKey="x"
                 name="Sport Index"
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: "hsl(var(--muted-foreground))" }}
+                stroke="var(--muted-foreground)"
+                tick={{ fill: "var(--muted-foreground)" }}
               />
               <YAxis
                 type="number"
                 dataKey="y"
                 name="Ranking"
-                stroke="hsl(var(--muted-foreground))"
-                tick={{ fill: "hsl(var(--muted-foreground))" }}
+                stroke="var(--muted-foreground)"
+                tick={{ fill: "var(--muted-foreground)" }}
               />
               <Tooltip
                 contentStyle={tooltipStyle}
@@ -664,6 +666,10 @@ export default function SportsAnalyticsPage() {
               <TabsTrigger value="wiki" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                 <Globe className="h-4 w-4 mr-2" />
                 Sport Lookup
+              </TabsTrigger>
+              <TabsTrigger value="code" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <Code className="h-4 w-4 mr-2" />
+                Source Code
               </TabsTrigger>
             </TabsList>
 
@@ -976,6 +982,47 @@ export default function SportsAnalyticsPage() {
                     </div>
                   </div>
                 )}
+              </div>
+            </TabsContent>
+            <TabsContent value="code" className="space-y-6">
+              <div className="bg-card border border-border rounded-xl p-6">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Original Analysis Code</h3>
+                <p className="text-muted-foreground mb-6">
+                  The dashboard is powered by Python data analysis techniques. Below is a representative snippet of the original
+                  processing logic used to structure the rankings data.
+                </p>
+                <CodeWindow
+                  title="sports_analysis.py"
+                  language="python"
+                  code={`import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load the sports rankings dataset
+df = pd.read_csv('sports_data.csv')
+
+# Calculate average ranking for each country
+avg_rankings = df[['FRA', 'GER', 'USA', 'CHI', 'RUS', 'JAP']].mean().sort_values()
+
+# Identify top sports for each country
+top_sports = {}
+for country in ['FRA', 'GER', 'USA', 'CHI', 'RUS', 'JAP']:
+    best_sport = df.nsmallest(1, country)[['sport', country]]
+    top_sports[country] = best_sport.iloc[0].to_dict()
+
+# Function to analyze correlation between countries
+def analyze_country_correlation(data, country1, country2):
+    correlation = data[country1].corr(data[country2])
+    print(f"Ranking Correlation ({country1} vs {country2}): {correlation:.2f}")
+    return correlation
+
+# Analyze USA vs China rivalry
+analyze_country_correlation(df, 'USA', 'CHI')
+
+# Filter for Olympic sports only (example logic)
+olympic_sports = df[df['category'] == 'olympic']
+print(f"Found {len(olympic_sports)} Olympic sports in dataset")`}
+                />
               </div>
             </TabsContent>
           </Tabs>

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Activity, BarChart2, Database, ChevronRight, FileText } from "lucide-react"
+import { Activity, BarChart2, Database, ChevronRight, FileText, Sigma } from "lucide-react"
 
 const projects = [
   {
@@ -31,6 +31,15 @@ const projects = [
     tags: ["Sports Analytics", "Regression Analysis", "R"],
     type: "research" as const,
   },
+  {
+    id: "statistical-methods",
+    title: "Statistical Methods & Analysis",
+    description: "A comprehensive technical library of 7 case studies covering core and advanced statistical algorithms, from Regression to Machine Learning theory.",
+    icon: Sigma,
+    href: "/research/statistical-methods",
+    tags: ["Technical Library", "Machine Learning", "Statistical Theory"],
+    type: "research" as const,
+  },
 ]
 
 export function ProjectCards() {
@@ -45,11 +54,11 @@ export function ProjectCards() {
             analytics, and interactive data visualization.
           </p>
         </div>
-        
+
         <div className="grid gap-6">
           {projects.map((project) => (
-            <Link 
-              key={project.id} 
+            <Link
+              key={project.id}
               href={project.href}
               className="group block"
             >
@@ -60,26 +69,25 @@ export function ProjectCards() {
                       <project.icon className="h-8 w-8 text-primary" />
                     </div>
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${
-                        project.type === "project" 
-                          ? "bg-primary/20 text-primary" 
-                          : "bg-muted text-muted-foreground"
-                      }`}>
+                      <span className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${project.type === "project"
+                        ? "bg-primary/20 text-primary"
+                        : "bg-muted text-muted-foreground"
+                        }`}>
                         {project.type === "project" ? "Interactive Project" : "Research Paper"}
                       </span>
                     </div>
-                    
+
                     <h3 className="text-xl md:text-2xl font-semibold text-foreground group-hover:text-primary transition-colors mb-3 text-balance">
                       {project.title}
                     </h3>
-                    
+
                     <p className="text-muted-foreground mb-4 text-pretty">
                       {project.description}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag) => (
                         <span
@@ -90,13 +98,13 @@ export function ProjectCards() {
                         </span>
                       ))}
                     </div>
-                    
+
                     <div className="flex items-center text-sm text-primary font-medium">
                       {project.type === "project" ? "Explore Interactive Tool" : "View Research"}
                       <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
-                  
+
                   <div className="hidden lg:flex items-center justify-center w-12">
                     <FileText className="h-5 w-5 text-muted-foreground/50 group-hover:text-primary transition-colors" />
                   </div>

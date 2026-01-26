@@ -17,8 +17,10 @@ export const metadata: Metadata = {
     description: 'Portfolio showcasing research in predictive modeling, statistical analysis, and quantitative finance.',
     type: 'website',
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 }
+
+import { ThemeProvider } from "@/components/theme-provider"
 
 export default function RootLayout({
   children,
@@ -26,9 +28,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

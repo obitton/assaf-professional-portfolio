@@ -25,3 +25,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local scripts and dumps
+scripts/
+*.txt
+*.log
+
+# system
+.DS_Store

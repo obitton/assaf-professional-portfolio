@@ -13,7 +13,7 @@ export function Hero() {
           backgroundSize: '40px 40px'
         }} />
       </div>
-      
+
       <div className="max-w-6xl mx-auto px-6 py-24 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Text content */}
@@ -26,14 +26,14 @@ export function Hero() {
                 Assaf Bitton
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Undergraduate at Baruch College specializing in Statistics and Quantitative Modeling, 
+                Undergraduate at Baruch College specializing in Statistics and Quantitative Modeling,
                 with a focus on predictive analytics, risk modeling, and data-driven decision making.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap gap-4">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <a href="#research">
+                <a href="#work">
                   View Research
                   <ArrowDown className="ml-2 h-4 w-4" />
                 </a>
@@ -45,7 +45,7 @@ export function Hero() {
                 </a>
               </Button>
             </div>
-            
+
             <div className="flex items-center gap-6 pt-4">
               <a
                 href="https://linkedin.com/in/assafbitton"
@@ -65,7 +65,7 @@ export function Hero() {
               </a>
             </div>
           </div>
-          
+
           {/* Right side - Stats/Highlights */}
           <div className="hidden lg:grid grid-cols-2 gap-6">
             <div className="bg-card border border-border rounded-lg p-6 space-y-2">
@@ -87,7 +87,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-      
+
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
         <ArrowDown className="h-5 w-5 text-muted-foreground" />

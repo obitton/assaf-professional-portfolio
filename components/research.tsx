@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { FileText, ExternalLink, ChevronRight, Activity, BarChart2 } from "lucide-react"
+import Link from "next/link"
+import { FileText, ExternalLink, ChevronRight, Activity, BarChart2, Sigma } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -17,7 +18,7 @@ const researchPapers = [
     title: "Predictive Modeling for Cardiovascular Mortality",
     subtitle: "Logistic Regression Analysis of Clinical Features",
     icon: Activity,
-    description: "Developed a logistic regression model to predict cardiovascular mortality using 12 clinical features from 299 patients. The model achieved 85.6% accuracy with an AUC of 0.897.",
+    description: "I developed a logistic regression model to predict cardiovascular mortality using 12 clinical features from 299 patients. My model achieved 85.6% accuracy with an AUC of 0.897.",
     keyFindings: [
       "Serum creatinine and ejection fraction identified as strongest predictors",
       "Model achieved 85.6% accuracy on test data",
@@ -25,7 +26,7 @@ const researchPapers = [
       "Analysis of 299 patients with heart failure conditions"
     ],
     methodology: "Logistic Regression, Feature Selection, ROC Analysis",
-    pdfPath: "/papers/heart-failure-mortality.pdf",
+    pdfPath: "/research/heart-failure-mortality-risk.pdf",
     tags: ["Healthcare Analytics", "Logistic Regression", "Predictive Modeling"]
   },
   {
@@ -33,7 +34,7 @@ const researchPapers = [
     title: "Baseball Team Performance Analysis",
     subtitle: "Statistical Analysis of Offensive and Defensive Metrics",
     icon: BarChart2,
-    description: "Comprehensive analysis using the Lahman database examining how offensive and defensive metrics impact team wins. Included franchise comparisons and trend analysis from 1990-2023.",
+    description: "My comprehensive analysis using the Lahman database examining how offensive and defensive metrics impact team wins. I included franchise comparisons and trend analysis from 1990-2023.",
     keyFindings: [
       "Strong correlation between runs scored and season wins",
       "Defensive metrics show significant impact on playoff appearances",
@@ -41,8 +42,23 @@ const researchPapers = [
       "Franchise comparison across multiple performance indicators"
     ],
     methodology: "Multiple Regression, Time Series Analysis, Data Visualization",
-    pdfPath: "/papers/baseball-analytics.pdf",
+    pdfPath: "",
     tags: ["Sports Analytics", "Regression Analysis", "Time Series"]
+  },
+  {
+    id: "statistical-methods",
+    title: "Statistical Methods & Analysis",
+    subtitle: "Library of Regression, Classification & Theory",
+    icon: Sigma,
+    description: "A comprehensive collection of 7 technical case studies covering Linear/Logistic Regression, Regularization (Ridge/Lasso), Tree-based models, and advanced classification techniques (LDA, QDA, KNN).",
+    keyFindings: [
+      "Rigorous application of core statistical algorithms",
+      "Model comparisons (Train/Test Error, MSE, AUC)",
+      "Theoretical derivations and practical implementations"
+    ],
+    methodology: "Python/R, Mathematical Proofs, comparative analysis",
+    pdfPath: "/research/statistical-methods", // Special handling: Link to page
+    tags: ["Machine Learning", "Statistical Theory", "Model Selection"]
   }
 ]
 
@@ -56,11 +72,11 @@ export function Research() {
           <p className="text-sm font-medium tracking-widest uppercase text-primary">Research</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">Selected Publications</h2>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            Research exploring predictive modeling, statistical analysis, and data-driven insights 
+            Research exploring predictive modeling, statistical analysis, and data-driven insights
             across healthcare and sports domains.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           {researchPapers.map((paper) => (
             <Dialog key={paper.id}>
@@ -80,11 +96,11 @@ export function Research() {
                       <p className="text-sm text-muted-foreground mt-1">{paper.subtitle}</p>
                     </div>
                   </div>
-                  
+
                   <p className="text-muted-foreground mb-6 line-clamp-3">
                     {paper.description}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-6">
                     {paper.tags.map((tag) => (
                       <span
@@ -95,29 +111,29 @@ export function Research() {
                       </span>
                     ))}
                   </div>
-                  
+
                   <div className="flex items-center text-sm text-primary font-medium">
                     View Details
                     <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </article>
               </DialogTrigger>
-              
+
               <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-card border-border">
                 <DialogHeader>
                   <DialogTitle className="text-2xl font-bold text-foreground pr-8">
                     {paper.title}
                   </DialogTitle>
                 </DialogHeader>
-                
+
                 <div className="space-y-6 mt-4">
                   <p className="text-muted-foreground">{paper.description}</p>
-                  
+
                   <div>
                     <h4 className="text-sm font-semibold text-foreground mb-3">Methodology</h4>
                     <p className="text-sm text-muted-foreground">{paper.methodology}</p>
                   </div>
-                  
+
                   <div>
                     <h4 className="text-sm font-semibold text-foreground mb-3">Key Findings</h4>
                     <ul className="space-y-2">
@@ -129,7 +145,7 @@ export function Research() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {paper.tags.map((tag) => (
                       <span
@@ -140,14 +156,34 @@ export function Research() {
                       </span>
                     ))}
                   </div>
-                  
+
                   <div className="flex gap-4 pt-4">
-                    <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                      <a href={paper.pdfPath} target="_blank" rel="noopener noreferrer">
-                        <FileText className="mr-2 h-4 w-4" />
-                        View Full Paper
-                      </a>
-                    </Button>
+                    {paper.id === "statistical-methods" ? (
+                      <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+                        <Link href="/research/statistical-methods">
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          View Technical Library
+                        </Link>
+                      </Button>
+                    ) : (
+                      <Button
+                        asChild={!!paper.pdfPath}
+                        className="bg-primary text-primary-foreground hover:bg-primary/90"
+                        disabled={!paper.pdfPath}
+                      >
+                        {paper.pdfPath ? (
+                          <a href={paper.pdfPath} target="_blank" rel="noopener noreferrer">
+                            <FileText className="mr-2 h-4 w-4" />
+                            View Full Paper
+                          </a>
+                        ) : (
+                          <span>
+                            <FileText className="mr-2 h-4 w-4" />
+                            PDF Coming Soon
+                          </span>
+                        )}
+                      </Button>
+                    )}
                     <Button variant="outline" asChild className="border-border text-foreground hover:bg-secondary bg-transparent">
                       <a href={`#${paper.id}-visualization`}>
                         <ExternalLink className="mr-2 h-4 w-4" />
