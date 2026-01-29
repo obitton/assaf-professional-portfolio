@@ -47,7 +47,7 @@ export function Hero() {
 
             <div className="flex items-center gap-6 pt-4">
               <a
-                href="https://linkedin.com/in/assafbitton"
+                href="https://www.linkedin.com/in/assaf-bitton-887b9a115/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -89,7 +89,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown className="h-5 w-5 text-muted-foreground" />
+        <ArrowDown className="h-10 w-10 text-muted-foreground" />
       </div>
     </section>
   )

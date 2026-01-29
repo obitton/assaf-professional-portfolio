@@ -11,8 +11,8 @@ const contactInfo = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/assafbitton",
-    href: "https://linkedin.com/in/assafbitton",
+    value: "linkedin.com/in/assaf-bitton",
+    href: "https://www.linkedin.com/in/assaf-bitton-887b9a115/",
   },
   {
     icon: MapPin,
