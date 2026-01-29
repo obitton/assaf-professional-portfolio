@@ -5,13 +5,13 @@ import { Activity, BarChart2, Database, ChevronRight, FileText, Sigma } from "lu
 
 const projects = [
   {
-    id: "sports-analytics",
-    title: "International Sports Rankings Analyzer",
-    description: "Interactive dashboard comparing sports rankings across six countries with CRUD operations, multiple chart types, and Wikipedia API integration for sport information lookup.",
-    icon: Database,
-    href: "/projects/sports-analytics",
-    tags: ["Python", "Data Visualization", "API Integration", "CRUD"],
-    type: "project" as const,
+    id: "statistical-methods",
+    title: "Statistical Methods & Analysis",
+    description: "A comprehensive technical library of 7 case studies covering core and advanced statistical algorithms, from Regression to Machine Learning theory.",
+    icon: Sigma,
+    href: "/research/statistical-methods",
+    tags: ["Technical Library", "Machine Learning", "Statistical Theory"],
+    type: "research" as const,
   },
   {
     id: "heart-failure",
@@ -32,13 +32,13 @@ const projects = [
     type: "research" as const,
   },
   {
-    id: "statistical-methods",
-    title: "Statistical Methods & Analysis",
-    description: "A comprehensive technical library of 7 case studies covering core and advanced statistical algorithms, from Regression to Machine Learning theory.",
-    icon: Sigma,
-    href: "/research/statistical-methods",
-    tags: ["Technical Library", "Machine Learning", "Statistical Theory"],
-    type: "research" as const,
+    id: "sports-analytics",
+    title: "International Sports Rankings Analyzer",
+    description: "Interactive dashboard comparing sports rankings across six countries with CRUD operations, multiple chart types, and Wikipedia API integration for sport information lookup.",
+    icon: Database,
+    href: "/projects/sports-analytics",
+    tags: ["Python", "Data Visualization", "API Integration", "CRUD"],
+    type: "project" as const,
   },
 ]
 

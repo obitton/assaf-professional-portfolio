@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Navigation } from "@/components/navigation"
 import { ArrowLeft, FileText, Download, Activity, FileSpreadsheet, ExternalLink } from "lucide-react"
+import { PdfViewer } from "@/components/pdf-viewer"
 
 export default function HeartFailureResearchPage() {
   return (
@@ -69,29 +70,55 @@ export default function HeartFailureResearchPage() {
               </section>
 
               {/* Statistical Analysis Results (JASP Integration) */}
-              <section className="bg-card border border-border rounded-xl p-8 overflow-hidden">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                    <FileText className="h-6 w-6 text-primary" />
-                    Statistical Analysis
-                  </h2>
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="/data/heart-failure/statistical-report.html" target="_blank" rel="noopener noreferrer">
-                      Open Full Report <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
+              {/* PDF Viewer Section - Displayed First */}
+              <PdfViewer
+                title="Research Paper"
+                url="/research/heart-failure-mortality-risk.pdf"
+                className="mb-12"
+              />
+
+              {/* Statistical Analysis Results (JASP Integration) - Side by Side */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-2 mb-6">
+                  <FileText className="h-6 w-6 text-primary" />
+                  <h2 className="text-2xl font-bold text-foreground">Statistical Analysis</h2>
                 </div>
 
-                <div className="aspect-[3/4] w-full bg-white rounded-lg border border-border overflow-hidden">
-                  <iframe
-                    src="/data/heart-failure/statistical-report.html"
-                    className="w-full h-full border-0"
-                    title="JASP Statistical Report"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Original Results */}
+                  <div className="bg-card border border-border rounded-xl p-4 overflow-hidden">
+                    <h3 className="text-lg font-semibold mb-4 text-center">Original Results</h3>
+                    <div className="aspect-[3/4] w-full bg-white rounded-lg border border-border overflow-hidden mb-4">
+                      <iframe
+                        src="/data/heart-failure/original-results.html"
+                        className="w-full h-full border-0"
+                        title="Original JASP Results"
+                      />
+                    </div>
+                    <Button variant="outline" size="sm" className="w-full" asChild>
+                      <a href="/data/heart-failure/original-results.html" target="_blank" rel="noopener noreferrer">
+                        Open Full Report <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
+
+                  {/* Standardized Results */}
+                  <div className="bg-card border border-border rounded-xl p-4 overflow-hidden">
+                    <h3 className="text-lg font-semibold mb-4 text-center">Standardized Results</h3>
+                    <div className="aspect-[3/4] w-full bg-white rounded-lg border border-border overflow-hidden mb-4">
+                      <iframe
+                        src="/data/heart-failure/standardized-results.html"
+                        className="w-full h-full border-0"
+                        title="Standardized JASP Results"
+                      />
+                    </div>
+                    <Button variant="outline" size="sm" className="w-full" asChild>
+                      <a href="/data/heart-failure/standardized-results.html" target="_blank" rel="noopener noreferrer">
+                        Open Full Report <ExternalLink className="ml-2 h-4 w-4" />
+                      </a>
+                    </Button>
+                  </div>
                 </div>
-                <p className="text-sm text-muted-foreground mt-4 text-center">
-                  Live interactive preview of the JASP statistical report output.
-                </p>
               </section>
 
             </div>

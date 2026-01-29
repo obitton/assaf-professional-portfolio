@@ -6,6 +6,7 @@ import { ArrowLeft, FileText, BarChart2, TrendingUp, Target, Trophy, Users, Down
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Navigation } from "@/components/navigation"
+import { PdfViewer } from "@/components/pdf-viewer"
 import {
   BarChart,
   Bar,
@@ -292,27 +293,10 @@ export default function BaseballAnalyticsPage() {
                 </Tabs>
 
                 {/* PDF Viewer Section */}
-                <div className="bg-card border border-border rounded-xl p-8 overflow-hidden">
-                  <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-foreground flex items-center gap-2">
-                      <FileText className="h-6 w-6 text-primary" />
-                      Research Paper
-                    </h2>
-                    <Button variant="outline" size="sm" asChild>
-                      <a href="/research/baseball-team-performance.pdf" target="_blank" rel="noopener noreferrer">
-                        Open PDF <ExternalLink className="ml-2 h-4 w-4" />
-                      </a>
-                    </Button>
-                  </div>
-
-                  <div className="aspect-[3/4] md:aspect-[16/9] w-full bg-white rounded-lg border border-border overflow-hidden">
-                    <iframe
-                      src="/research/baseball-team-performance.pdf"
-                      className="w-full h-full border-0"
-                      title="Baseball Research Paper"
-                    />
-                  </div>
-                </div>
+                <PdfViewer
+                  title="Research Paper"
+                  url="/research/baseball-team-performance.pdf"
+                />
               </div>
 
               {/* Sidebar - Right Column */}

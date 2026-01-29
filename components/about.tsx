@@ -1,9 +1,9 @@
 import { GraduationCap, Award, Code, BarChart3 } from "lucide-react"
 
 const skills = [
-  { category: "Programming", items: ["Python", "R", "SQL", "MS Office Suite"] },
+  { category: "Programming", items: ["Python", "R", "MS Office Suite"] },
   { category: "Statistical Methods", items: ["Logistic Regression", "Multiple Regression", "Data Visualization", "Hypothesis Testing"] },
-  { category: "Domain Expertise", items: ["Risk Analytics", "Predictive Modeling", "Financial Analysis", "Quantitative Research"] },
+  { category: "Domain Expertise", items: ["Predictive Modeling", "Quantitative Research"] },
 ]
 
 const highlights = [
@@ -17,13 +17,13 @@ const highlights = [
     icon: Award,
     title: "Dean's Honors List",
     subtitle: "Academic Excellence",
-    description: "Maintaining a 3.94 GPA while pursuing rigorous quantitative coursework"
+    description: "Maintaining a 3.94 GPA while pursuing rigorous quantitative coursework and working full-time as a real-estate field inspector"
   },
   {
     icon: BarChart3,
     title: "Research Focus",
     subtitle: "Predictive Analytics",
-    description: "Developing models for healthcare outcomes and sports analytics"
+    description: "Leveraging predictive and descriptive statistical research to explore risk and financial analytics"
   },
   {
     icon: Code,
@@ -41,21 +41,21 @@ export function About() {
           <p className="text-sm font-medium tracking-widest uppercase text-primary">About</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">Background & Expertise</h2>
         </div>
-        
+
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left side - Bio */}
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I am a quantitative finance student with a passion for applying statistical methods 
-              to solve complex problems in finance and healthcare. My academic journey at Baruch College 
+              I am a quantitative finance student with a passion for applying statistical methods
+              to solve complex problems in finance and healthcare. My academic journey at Baruch College
               has equipped me with a strong foundation in statistical theory and practical data analysis skills.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              My research spans predictive modeling for cardiovascular mortality and advanced sports analytics, 
-              demonstrating my ability to translate complex datasets into actionable insights. I am particularly 
+              My research spans predictive modeling for cardiovascular mortality and advanced sports analytics,
+              demonstrating my ability to translate complex datasets into actionable insights. I am particularly
               interested in risk analytics and developing quantitative strategies for financial decision-making.
             </p>
-            
+
             {/* Skills */}
             <div className="pt-8 space-y-6">
               {skills.map((skillGroup) => (
@@ -75,7 +75,7 @@ export function About() {
               ))}
             </div>
           </div>
-          
+
           {/* Right side - Highlights Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {highlights.map((highlight) => (

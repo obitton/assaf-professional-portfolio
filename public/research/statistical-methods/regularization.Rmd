@@ -1,0 +1,178 @@
+---
+title: "HW 5"
+author: "Assaf Bitton"
+output:
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE,
+                      warnings = FALSE, fig.align = 'center',  eval = TRUE)
+```
+
+You can run the following code to prepare the analysis.
+```{r}
+library(tidyverse)  #INSTALL IF NECESSARY
+n <- 300
+p <- 20
+set.seed(111)
+x <- matrix(rnorm(n*p), n, p)
+beta <- rep(0, p)
+beta[seq(1, 19, 2)] = seq(from = 0.1, to = 1, by = 0.1)
+y <- x %*% beta + rnorm(n)
+dat <- data.frame(x = x, y = y)
+colnames(dat) <- c(paste0("x", 1:p), "y")
+tr_dat <- dat[1:(n/2), ]
+te_dat <- dat[-(1:(n/2)), ]
+```
+
+Suppose we want to build a linear regression model to predict `y`. Please answer the following questions.
+
+#### Q1
+
+Use the training data `tr_dat` using the following methods. For each method, output its regression coefficients, and compute its test error on `te_dat`. Looking at the true regression coefficients `beta`, discuss your findings on the following methods.
+
+a. Best Subset Selection with BIC
+b. Forward Stepwise Selection with Adjusted $R^2$
+c. Backward Stepwise Selection with Cp
+d. Ridge Regression with 10-fold CV
+e. Lasso with 10-fold CV
+
+Note: Use `set.seed(0)` before calling `cv.glmnet` to ensure reproducibility.
+
+**Solution:**
+```{r}
+library(leaps)
+# Define a 'predict' method for 'regsubsets' objects
+predict.regsubsets <- function(object, newdata, id) {
+  form <- as.formula(object$call[[2]])
+  mat <- model.matrix(form, newdata)
+  coefs <- coef(object, id = id)
+  vars <- names(coefs)
+  mat[, vars] %*% coefs
+}
+###################################
+# a. Best Subset Selection with BIC
+###################################
+best_subset <- regsubsets(y ~ ., 
+                          data = tr_dat, 
+                          nvmax = 20)
+best_subset_sum <- summary(best_subset)
+
+best_id <- which.min(best_subset_sum$bic)
+
+best_coef <- coef(best_subset, best_id)
+
+# Best Subset Selection (BIC) Coefficients
+best_coef
+pred_bic <- predict(best_subset, 
+                    newdata = te_dat, 
+                    id = best_id)
+# Compute test errors
+mse_bic <- mean((te_dat$y - pred_bic)^2)
+mse_bic
+
+########################################
+# b. Forward Stepwise Selection with R^2
+########################################
+forward_fit <- regsubsets(y ~ .,
+                          data = tr_dat,
+                          method = "forward",
+                          nvmax = 20)
+forward_sum <- summary(forward_fit)
+
+best_id_adjr2 <- which.max(forward_sum$adjr2)
+
+forward_coef <- coef(forward_fit, best_id_adjr2)
+
+# Forward Stepwise (Adj R^2) Coefficients
+forward_coef
+pred_forward <- predict(forward_fit, 
+                    newdata = te_dat, 
+                    id = best_id_adjr2)
+
+# Compute test errors
+mse_forward <- mean((te_dat$y - pred_forward)^2)
+mse_forward
+
+########################################
+# c. Backward Stepwise Selection with Cp
+########################################
+backward_fit <- regsubsets(y ~ .,
+                          data = tr_dat,
+                          method = "backward",
+                          nvmax = 20)
+backward_sum <- summary(backward_fit)
+
+best_id_cp <- which.min(backward_sum$cp)
+
+backward_coef <- coef(backward_fit, best_id_cp)
+
+# Backward Stepwise (Cp) Coefficients
+backward_coef
+pred_backward <- predict(backward_fit, 
+                    newdata = te_dat, 
+                    id = best_id_cp)
+# Compute test errors
+mse_backward <- mean((te_dat$y - pred_backward)^2)
+mse_backward
+
+######################################
+# d. Ridge Regression with 10-fold CV
+######################################
+library(glmnet)
+set.seed(0)
+
+x_tr <- model.matrix(y ~ .,
+                     data = tr_dat)[, -1]
+x_te <- model.matrix(y ~ .,
+                     data = te_dat)[, -1]
+y_tr <- tr_dat$y
+y_te <- te_dat$y
+
+cv_fit_ridge <- cv.glmnet(x_tr,
+                          y_tr,
+                          alpha = 0)
+ridge_coef <- coef(cv_fit_ridge)
+
+# Ridge Regression Coefficients
+ridge_coef
+pred_ridge <- predict(cv_fit_ridge, 
+                      newx = x_te)
+# Compute test errors 
+mse_ridge <- mean((te_dat$y - pred_ridge)^2)
+mse_ridge
+
+################################
+# e. Lasso with with 10-fold CV
+################################
+set.seed(0)
+cv_fit_lasso <- cv.glmnet(x_tr,
+                          y_tr,
+                          alpha = 1)
+
+lasso_coef <- coef(cv_fit_lasso)
+
+# Lasso Coefficients
+lasso_coef
+pred_lasso <- predict(cv_fit_lasso, 
+                      newx = x_te)
+
+# Compute test errors
+mse_lasso <- mean((te_dat$y - pred_lasso)^2)
+mse_lasso
+
+
+```
+- Using "**Best Subset Selection**" with method "**BIC**" results in a model with **9** predictors. Those **predictors** are **x3, x5, x7, x9, x11, x13, x15, x17, and x19**. The model **correctly identified** almost all **true predictors** and **correctly excluded** all **noise variables**. The model **dropped x1** since it's **true coefficient** is 0.1, which is **very small**. The **Test Error** is **1.086088**, which is the **lowest** test error achieved among the **subset/stepwise methods**.
+- Using "**Forward Stepwise Selection**" with method "**Adjusted** $R2$" results in a model with **14** predictors. Those **predictors** are **x1, x3, x4, x5, x7, x8, x9, x11, x12, x13, x15, x16, x17, x19**. The model **successfully** included **x1**, detecting the weak signla that **BIC missed**. However, because adjusted $R2$ is less strict than **BIC**, it **included 4 noise variables (x4, x8, x12, x16)** that should have been **zero**. The **Test Error** is 1.170967, which is **higher than BIC**. Therefore, the benefit of **including x1** was outweighed by the **variance introduced by the 4 noise variables**.
+- Using "**Backward Stepwise Selection**" with method "**Cp**" results in a model with **11** predictors. Those **predictors** are **x1, x3, x4, x5, x7, x9, x11, x13, x15, x17, x19**. This model also correctly identified **x1** as a signal. The model **included 1 noise variable (x4)**. This resulted in a model that fit somewhere between **BIC** and adjusted $R2$. The **Test Error** is 1.148156, which fits **better than Forward Stepwise with adjusted** $R2$ but **worse than Best Subset with BIC**.
+- Using "**Ridge Regression**" results in a model with **all 20** predictors. Ridge regression shrinks coefficients to zero, but does not perform variable selection. Because of this, all noise variables are still included in the model. The **Test Error** is 1.197607, which is the **highest error** among all of the methods. Since the true model only includes half the predictors, Ridge is at a disadvantage because **it cannot zero out** the **noise variables**.
+- Using "**Lasso**" results in a model with **13** predictors. Those **predictors** are **x1, x3, x4, x5, x7, x8, x9, x11, x13, x15, x16, x17, x19**. Since lasso performs variable selection, it **successfully** zeroed out **most** of the **noise variables**. It managed to keep **x1** (with a coefficient of 0.077), despite its very weak signal, but also **kept x4 and x8** which are small **noise variables**. The **Test Error** is 1.158921, which **beat out Ridge** and **Forward Stepwise with adjusted** $R2$, but fell below **Best Subset with BIC** and **Backward stepwise with Cp**.
+
+#### Q2
+
+For the Simple Special Case for Ridge Regression, prove (6.14) on Page 248 of ISLRv2. Hint: Use (6.12) and the quadratic vertex formula. 
+
+**Solution:**
