@@ -26,8 +26,7 @@ export function Hero() {
                 Assaf Bitton
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg">
-                Undergraduate at Baruch College specializing in Statistics and Quantitative Modeling,
-                with a focus on predictive analytics, risk modeling, and data-driven decision making.
+                Undergraduate at Baruch College majoring in Statistics and Quantitative Modeling, with a concentration in Data Science and minors in Mathematics and Economics. Coursework emphasizes predictive analytics, risk modeling, and data-driven decision-making.
               </p>
             </div>
 
