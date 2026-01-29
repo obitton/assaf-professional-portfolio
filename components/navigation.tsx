@@ -8,9 +8,9 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#work", label: "Work" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#work", label: "Work" },
+  { href: "/#contact", label: "Contact" },
 ]
 
 export function Navigation() {
@@ -61,7 +61,7 @@ export function Navigation() {
             <ThemeToggle />
           </div>
 
-{/* Mobile Menu Button */}
+          {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
             <ThemeToggle />
             <Button

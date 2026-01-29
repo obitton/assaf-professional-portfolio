@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 interface CodeWindowProps {
     title: string
     code: string
-    language?: "python" | "r" | "typescript"
+    language?: "python" | "r" | "typescript" | "text"
     className?: string
 }
 

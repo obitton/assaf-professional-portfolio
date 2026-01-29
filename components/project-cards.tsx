@@ -1,9 +1,18 @@
 "use client"
 
 import Link from "next/link"
-import { Activity, BarChart2, Database, ChevronRight, FileText, Sigma } from "lucide-react"
+import { Activity, BarChart2, Database, ChevronRight, FileText, Sigma, Target } from "lucide-react"
 
 const projects = [
+  {
+    id: "quantitative-modeling",
+    title: "Quantitative Decision Modeling",
+    description: "Advanced optimization and decision analysis case studies using Linear, Integer, and Non-Linear Programming with Excel's Analytic Solver.",
+    icon: Target,
+    href: "/research/quantitative-modeling",
+    tags: ["Prescriptive Analytics", "Optimization", "Excel Solver"],
+    type: "research" as const,
+  },
   {
     id: "statistical-methods",
     title: "Statistical Methods & Analysis",
