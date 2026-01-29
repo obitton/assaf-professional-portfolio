@@ -40,7 +40,7 @@ export function Contact() {
                 can contribute to your team.
               </p>
             </div>
-            
+
             <div className="flex flex-wrap gap-4">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <a href="mailto:assaf.bitton@baruchmail.cuny.edu">
@@ -49,14 +49,14 @@ export function Contact() {
                 </a>
               </Button>
               <Button variant="outline" asChild className="border-border text-foreground hover:bg-secondary bg-transparent">
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="/Assaf_Bitton_Resume.pdf" download="Assaf Bitton Resume.pdf">
                   <FileText className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
               </Button>
             </div>
           </div>
-          
+
           {/* Right side - Contact Info Cards */}
           <div className="space-y-4">
             {contactInfo.map((item) => (
@@ -86,7 +86,7 @@ export function Contact() {
             ))}
           </div>
         </div>
-        
+
         {/* Footer */}
         <div className="mt-24 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">

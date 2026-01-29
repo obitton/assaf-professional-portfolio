@@ -39,7 +39,7 @@ export function Hero() {
                 </a>
               </Button>
               <Button variant="outline" asChild className="border-border text-foreground hover:bg-secondary bg-transparent">
-                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="/resume">
                   <FileText className="mr-2 h-4 w-4" />
                   Resume
                 </a>

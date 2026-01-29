@@ -1,9 +1,9 @@
 import { GraduationCap, Award, Code, BarChart3 } from "lucide-react"
 
 const skills = [
-  { category: "Programming", items: ["Python", "R", "MS Office Suite"] },
-  { category: "Statistical Methods", items: ["Logistic Regression", "Multiple Regression", "Data Visualization", "Hypothesis Testing"] },
-  { category: "Domain Expertise", items: ["Predictive Modeling", "Quantitative Research"] },
+  { category: "Programming & Software", items: ["Python", "R", "Analytic Solver", "Excel (Advanced)"] },
+  { category: "Statistical Methods", items: ["Logistic Regression", "Decision Trees", "K-Nearest Neighbors (KNN)", "Integer Programming", "Monte Carlo Simulation", "Network Optimization", "Regularization (Lasso/Ridge)"] },
+  { category: "Domain Expertise", items: ["Predictive Modeling", "Quantitative Research", "Financial Engineering", "Operations Research"] },
 ]
 
 const highlights = [
