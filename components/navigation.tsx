@@ -80,9 +80,8 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <ul className="md:hidden mt-4 pb-4 border-t border-border pt-4 space-y-4">
+          <ul className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border pb-4 px-6 space-y-4 shadow-lg">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link

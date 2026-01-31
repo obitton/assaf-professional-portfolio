@@ -6,7 +6,7 @@ const contactInfo = [
     icon: Mail,
     label: "Email",
     value: "assaf.bitton@baruchmail.cuny.edu",
-    href: "mailto:assaf.bitton@baruchmail.cuny.edu",
+    href: "mailto:ASSAF.BITTON@baruchmail.cuny.edu",
   },
   {
     icon: Linkedin,
@@ -43,7 +43,7 @@ export function Contact() {
 
             <div className="flex flex-wrap gap-4">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <a href="mailto:assaf.bitton@baruchmail.cuny.edu">
+                <a href="mailto:ASSAF.BITTON@baruchmail.cuny.edu">
                   <Mail className="mr-2 h-4 w-4" />
                   Get in Touch
                 </a>
@@ -103,7 +103,7 @@ export function Contact() {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="mailto:assaf.bitton@baruchmail.cuny.edu"
+              href="mailto:ASSAF.BITTON@baruchmail.cuny.edu"
               className="text-muted-foreground hover:text-primary transition-colors"
               aria-label="Email"
             >

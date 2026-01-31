@@ -12,6 +12,8 @@ const projects = [
     href: "/research/quantitative-modeling",
     tags: ["Prescriptive Analytics", "Optimization", "Excel Solver"],
     type: "research" as const,
+    category: "Case Studies",
+    actionLabel: "View Case Studies",
   },
   {
     id: "statistical-methods",
@@ -21,6 +23,8 @@ const projects = [
     href: "/research/statistical-methods",
     tags: ["Technical Library", "Machine Learning", "Statistical Theory", "R"],
     type: "research" as const,
+    category: "Technical Library",
+    actionLabel: "View Library",
   },
   {
     id: "heart-failure",
@@ -30,6 +34,8 @@ const projects = [
     href: "/research/heart-failure",
     tags: ["Healthcare Analytics", "Logistic Regression", "JASP"],
     type: "research" as const,
+    category: "Research Paper",
+    actionLabel: "View Research",
   },
   {
     id: "baseball-analytics",
@@ -39,6 +45,8 @@ const projects = [
     href: "/research/baseball-analytics",
     tags: ["Sports Analytics", "Regression Analysis", "R"],
     type: "research" as const,
+    category: "Research Paper",
+    actionLabel: "View Research",
   },
   {
     id: "sports-analytics",
@@ -48,6 +56,8 @@ const projects = [
     href: "/projects/sports-analytics",
     tags: ["Python", "Data Visualization", "API Integration", "CRUD"],
     type: "project" as const,
+    category: "Interactive Project",
+    actionLabel: "Explore Interactive Tool",
   },
 ]
 
@@ -85,7 +95,7 @@ export function ProjectCards() {
                         ? "bg-primary/20 text-primary"
                         : "bg-muted text-muted-foreground"
                         }`}>
-                        {project.type === "project" ? "Interactive Project" : "Research Paper"}
+                        {project.category}
                       </span>
                     </div>
 
@@ -109,7 +119,7 @@ export function ProjectCards() {
                     </div>
 
                     <div className="flex items-center text-sm text-primary font-medium">
-                      {project.type === "project" ? "Explore Interactive Tool" : "View Research"}
+                      {project.actionLabel}
                       <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>

@@ -30,6 +30,26 @@ export function Hero() {
               </p>
             </div>
 
+            {/* Mobile Stats/Highlights */}
+            <div className="grid grid-cols-2 gap-4 lg:hidden">
+              <div className="bg-card border border-border rounded-lg p-4 space-y-1">
+                <p className="text-2xl font-bold text-primary">3.94</p>
+                <p className="text-xs text-muted-foreground">GPA / 4.0</p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-4 space-y-1">
+                <p className="text-2xl font-bold text-primary">2027</p>
+                <p className="text-xs text-muted-foreground">Expected Graduation</p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-4 space-y-1">
+                <p className="text-sm font-medium text-foreground">Statistics & Quantitative Modeling</p>
+                <p className="text-xs text-muted-foreground">Major</p>
+              </div>
+              <div className="bg-card border border-border rounded-lg p-4 space-y-1">
+                <p className="text-sm font-medium text-foreground">Mathematics & Economics</p>
+                <p className="text-xs text-muted-foreground">Minor</p>
+              </div>
+            </div>
+
             <div className="flex flex-wrap gap-4">
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
                 <a href="#work">
@@ -56,7 +76,7 @@ export function Hero() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:assafbitton@example.com"
+                href="mailto:ASSAF.BITTON@baruchmail.cuny.edu"
                 className="text-muted-foreground hover:text-primary transition-colors"
                 aria-label="Email"
               >

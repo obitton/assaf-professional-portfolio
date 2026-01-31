@@ -1,7 +1,7 @@
 import { GraduationCap, Award, Code, BarChart3 } from "lucide-react"
 
 const skills = [
-  { category: "Programming & Software", items: ["Python", "R", "Analytic Solver", "Excel (Advanced)"] },
+  { category: "Programming & Software", items: ["Python", "R", "Analytic Solver for Excel", "JASP"] },
   { category: "Statistical Methods", items: ["Logistic Regression", "Decision Trees", "K-Nearest Neighbors (KNN)", "Integer Programming", "Monte Carlo Simulation", "Network Optimization", "Regularization (Lasso/Ridge)"] },
   { category: "Domain Expertise", items: ["Predictive Modeling", "Quantitative Research", "Financial Engineering", "Operations Research"] },
 ]
@@ -46,14 +46,10 @@ export function About() {
           {/* Left side - Bio */}
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I am a quantitative finance student with a passion for applying statistical methods
-              to solve complex problems in finance and healthcare. My academic journey at Baruch College
-              has equipped me with a strong foundation in statistical theory and practical data analysis skills.
+              I’m interested in applying statistics and programming to analyze data, build models, and solve complex quantitative problems. I enjoy working through uncertainty, designing analytical approaches, and translating results into clear, actionable insights.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              My research spans predictive modeling for cardiovascular mortality and advanced sports analytics,
-              demonstrating my ability to translate complex datasets into actionable insights. I am particularly
-              interested in risk analytics and developing quantitative strategies for financial decision-making.
+              Through coursework and projects, I’ve developed a strong quantitative toolkit that’s well suited for tackling data-driven challenges, including those that arise in financial and economic contexts. I’m motivated by problems that require careful reasoning, clean implementation, and thoughtful interpretation of results.
             </p>
 
             {/* Skills */}
